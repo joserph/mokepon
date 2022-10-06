@@ -1,7 +1,17 @@
+let ataqueJugador
+let ataqueEnemigo
+
 function iniciarJuego()
 {
     let botonMascotaJugador = document.getElementById('boton-mascota')
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
+
+    let botonFuego = document.getElementById('boton-fuego')
+    botonFuego.addEventListener('click', ataqueFuego)
+    let botonAgua = document.getElementById('boton-agua')
+    botonAgua.addEventListener('click', ataqueAgua)
+    let botonTierra = document.getElementById('boton-tierra')
+    botonTierra.addEventListener('click', ataqueTierra)
 }
 
 function seleccionarMascotaJugador()
@@ -9,9 +19,9 @@ function seleccionarMascotaJugador()
     let inputHipodoge = document.getElementById('hipodoge')
     let inputCapipepo = document.getElementById('capipepo')
     let inputRatigueya = document.getElementById('ratigueya')
-    let inputLangostelvis = document.getElementById('langostelvis')
-    let inputTucapalma = document.getElementById('tucapalma')
-    let inputTydos = document.getElementById('tydos')
+    // let inputLangostelvis = document.getElementById('langostelvis')
+    // let inputTucapalma = document.getElementById('tucapalma')
+    // let inputTydos = document.getElementById('tydos')
     let spanMascotaJugador = document.getElementById('mascota-jugador')
 
     if(inputHipodoge.checked)
@@ -23,15 +33,6 @@ function seleccionarMascotaJugador()
     }else if(inputRatigueya.checked)
     {
         spanMascotaJugador.innerHTML = 'Ratigueya'
-    }else if(inputLangostelvis.checked)
-    {
-        spanMascotaJugador.innerHTML = 'Langostelvis'
-    }else if(inputTucapalma.checked)
-    {
-        spanMascotaJugador.innerHTML = 'Tucapalma'
-    }else if(inputTydos.checked)
-    {
-        spanMascotaJugador.innerHTML = 'Tydos'
     }else{
         alert('Selecciona una mascota')
     }
@@ -41,28 +42,62 @@ function seleccionarMascotaJugador()
 
 function seleccionarMascotaEnemigo()
 {
-    let ataqueAleatorio = aleatorio(1,6)
+    let mascotaAleatoria = aleatorio(1,3)
     let spanMacotaEnamigo = document.getElementById('mascota-enemigo')
+
+    if(mascotaAleatoria == 1)
+    {
+        spanMacotaEnamigo.innerHTML = 'Hipodoge'
+    }else if(mascotaAleatoria == 2)
+    {
+        spanMacotaEnamigo.innerHTML = 'Capipepo'
+    }else
+    {
+        spanMacotaEnamigo.innerHTML = 'Ratigueya'
+    }
+}
+
+function ataqueFuego()
+{
+    ataqueJugador = 'FUEGO'
+    ataqueAleatorioEnemigo()
+}
+
+function ataqueAgua()
+{
+    ataqueJugador = 'AGUA'
+    ataqueAleatorioEnemigo()
+}
+
+function ataqueTierra()
+{
+    ataqueJugador = 'TIERRA'
+    ataqueAleatorioEnemigo()
+}
+
+function ataqueAleatorioEnemigo()
+{
+    let ataqueAleatorio = aleatorio(1,3)
 
     if(ataqueAleatorio == 1)
     {
-        spanMacotaEnamigo.innerHTML = 'Hipodoge'
+        ataqueEnemigo = 'FUEGO'
     }else if(ataqueAleatorio == 2)
     {
-        spanMacotaEnamigo.innerHTML = 'Capipepo'
-    }else if(ataqueAleatorio == 3)
-    {
-        spanMacotaEnamigo.innerHTML = 'Ratigueya'
-    }else if(ataqueAleatorio == 4)
-    {
-        spanMacotaEnamigo.innerHTML = 'Langostelvis'
-    }else if(ataqueAleatorio == 5)
-    {
-        spanMacotaEnamigo.innerHTML = 'Tucapalma'
-    }else if(ataqueAleatorio == 6)
-    {
-        spanMacotaEnamigo.innerHTML = 'Tydos'
+        ataqueEnemigo = 'AGUA'
+    }else{
+        ataqueEnemigo = 'TIERRA'
     }
+
+    crearMensaje()
+}
+
+function crearMensaje()
+{
+    let sectionMensajes = document.getElementById('mensajes')
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo atacó con con ' + ataqueEnemigo + ' - PENDIENTE 🎉'
+    sectionMensajes.appendChild(parrafo)
 }
 
 function aleatorio(min, max)
