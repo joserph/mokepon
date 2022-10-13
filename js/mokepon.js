@@ -5,6 +5,12 @@ let vidasEnemigo = 3
 
 function iniciarJuego()
 {
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSeleccionarAtaque.style.display = 'none'
+
+    let sectionReiniciar = document.getElementById('reiniciar')
+    sectionReiniciar.style.display = 'none'
+
     let botonMascotaJugador = document.getElementById('boton-mascota')
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
@@ -14,10 +20,19 @@ function iniciarJuego()
     botonAgua.addEventListener('click', ataqueAgua)
     let botonTierra = document.getElementById('boton-tierra')
     botonTierra.addEventListener('click', ataqueTierra)
+
+    let botonReiniciar = document.getElementById('boton-reiniciar')
+    botonReiniciar.addEventListener('click', reiniciarJuego)
 }
 
 function seleccionarMascotaJugador()
 {
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSeleccionarAtaque.style.display = 'block'
+
+    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+    sectionSeleccionarMascota.style.display = 'none'
+
     let inputHipodoge = document.getElementById('hipodoge')
     let inputCapipepo = document.getElementById('capipepo')
     let inputRatigueya = document.getElementById('ratigueya')
@@ -40,6 +55,7 @@ function seleccionarMascotaJugador()
     }
 
     seleccionarMascotaEnemigo()
+
 }
 
 function seleccionarMascotaEnemigo()
@@ -122,6 +138,19 @@ function combate()
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
     }
+
+    revisarVidas()
+}
+
+function revisarVidas()
+{
+    if(vidasEnemigo == 0)
+    {
+        crearMensajeFinal("FELICITACIONES! Ganaste")
+    }else if(vidasJugador == 0)
+    {
+        crearMensajeFinal("Lo siento, Perdiste")
+    }
 }
 
 function crearMensaje(resultado)
@@ -130,6 +159,29 @@ function crearMensaje(resultado)
     let parrafo = document.createElement('p')
     parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo atacó con con ' + ataqueEnemigo + ' - ' + resultado
     sectionMensajes.appendChild(parrafo)
+}
+
+function crearMensajeFinal(resultadoFinal)
+{
+    let sectionReiniciar = document.getElementById('reiniciar')
+    sectionReiniciar.style.display = 'block'
+
+    let sectionMensajes = document.getElementById('mensajes')
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = resultadoFinal
+    sectionMensajes.appendChild(parrafo)
+
+    let botonFuego = document.getElementById('boton-fuego')
+    botonFuego.disabled = true
+    let botonAgua = document.getElementById('boton-agua')
+    botonAgua.disabled = true
+    let botonTierra = document.getElementById('boton-tierra')
+    botonTierra.disabled = true
+}
+
+function reiniciarJuego()
+{
+    location.reload()
 }
 
 function aleatorio(min, max)
