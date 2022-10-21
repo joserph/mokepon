@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Silkscreen&display=swap');
 body {
     font-family: 'Josefin Sans', sans-serif;
-    background-color: #181818;
+    background-color: #023535;
 }
 #seleccionar-mascota {
     display: flex;
@@ -112,6 +112,15 @@ input:checked + label {
 }
 #ataques-del-jugador, #ataques-del-enemigo {
     color: #F2F2F2;
+}
+
+#ver-mapa {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#mapa {
+    border: 2px solid #5CB8E4;
 }
 /* De 0 hasta 360 px */
 @media (max-width: 360px) {
