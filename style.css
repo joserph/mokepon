@@ -119,13 +119,33 @@ input:checked + label {
     align-items: center;
     justify-content: center;
 }
-#mapa {
+/* #mapa {
     border: 2px solid #5CB8E4;
+} */
+
+#ver-mapa button {
+    width: 95px;
+    height: 40px;
+    border-radius: 20px;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Silkscreen', cursive;
+    margin: 10px 0;
 }
 /* De 0 hasta 360 px */
-@media (max-width: 360px) {
+@media (max-width: 560px) {
     .tarjetas, .tarjetas-ataques {
         flex-direction: column;
+    }
+    
+}
+
+@media (max-width: 320px) {
+    #ver-mapa div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
 }
